@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>2024년 나만의 신년계획</title>
+  <!-- 페이지 띄우고 있는 위에 부분 이름 변경하는 역할 -->
+  <!-- <link href="style.css" rel="stylesheet" type="text/css" /> -->
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Hahmlet:wght@300&display=swap");
+
+    * {
+      font-family: 'Hahmlet', serif;
+      /* 별표는 모든 것에 적용하라는 의미 */
+    }
+
+    .bg {
+      width: 360px;
+      /* 글들을 가운데로 오게 하기 위해서 가운데를 지정하기 위한 사이즈 생 
+      성 */
+      /* 모바일에서도 볼 수 있게 360px로 지정함 */
+      background-image: url('https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/bucketList/bg-grid.png');
+      background-size: cover;
+      background-position: center;
+      margin: auto;
+      /* 가져온 이미지와 웹사이트 배경화면이 어색하지 않게 잘 부합하도록 하 
+      는 코드 */
+    }
+
+    /* 명찰 만들고 명찰에 속성 부여 */
+    /* body에 명찰 안 달아주면 효과 안나타남 */
+    /* body = "bg" 로 명찰 달아주면 효과 적용 */
+
+    .bucket {
+      width: 160px;
+      height: 160px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .img1 {
+      background-image: url('https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/bucketList/bucket-red.png');
+      /* background-image: url('check.png'); */
+    }
+
+    .img2 {
+      background-image: url('https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/bucketList/bucket-lightred.png');
+    }
+
+    .title {
+      /* 2024년 신년계획 */
+      background-color: tomato;
+      border-radius: 10px;
+      /* 좀 둥그런 모양이길 원할 때 사용 */
+      padding: 4px 14px;
+      /* 위아래 양옆 공간 픽셀 */
+      color: white;
+      /* text-align: center; */
+      /* 글씨를 가운데로 */
+    }
+
+    .msg {
+      margin: -5px 0 15px;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css"
+    href="https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/bucketList/sparta-bucket2.css">
+</head>
+
+<body class="bg-t4 center">
+  <h1 class="title-t4">2024년 신년계획</h1>
+  <p class="msg">꼭 해내자!</p>
+  <div class="flex-row wrap">
+    <div class="bucket img1-t4 center">바디프로필 찍기</div>
+    <div class="bucket img2-t4 center">자격증 따기</div>
+    <div class="bucket img3-t4 center">웹사이트 2개 만들어보기</div>
+    <div class="bucket img4-t4 center">운동 취미 만들기</div>
+    <div class="bucket img5-t4 center">책 2권 읽기</div>
+    <div class="bucket img3-t4 center">전공 A+</div>
+  </div>
+  <script>
+    // 페이지 로드 시 이전 상태 복원
+    document.addEventListener("DOMContentLoaded", (event) => {
+      const buckets = document.querySelectorAll(".bucket");
+      buckets.forEach((bucket, index) => {
+        // 로컬 스토리지에서 상태 읽기
+        const isDone = localStorage.getItem("bucket" + index) === "done";
+        if (isDone) {
+          bucket.classList.add("done");
+        }
+      });
+    });
+
+    // 버킷 리스트 클릭 이벤트
+    const buckets = document.querySelectorAll(".bucket");
+    buckets.forEach((bucket, index) => {
+      bucket.addEventListener("click", function () {
+        // 클래스 토글
+        bucket.classList.toggle("done");
+
+        // 로컬 스토리지에 상태 저장
+        if (bucket.classList.contains("done")) {
+          localStorage.setItem("bucket" + index, "done");
+        } else {
+          localStorage.setItem("bucket" + index, "");
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
